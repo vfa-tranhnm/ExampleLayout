@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class ChatUI : MonoBehaviour
 {
     [SerializeField] ChatElement chatleft;
     [SerializeField] ChatElement chatright;
     [SerializeField] RectTransform m_content;
     [SerializeField] TMP_InputField inputChat;
+    [SerializeField] Toggle toggle;
+    [SerializeField] Button btnSend;
+    [SerializeField] Button btnBack;
     // Start is called before the first frame update
     void Start()
     {
-
+        
+    }
+    public void CheckToggle()
+    {
+        btnSend.gameObject.SetActive(toggle.isOn);
     }
     public void OnSendChat()
     {
@@ -40,5 +49,10 @@ public class ChatUI : MonoBehaviour
             //m_content.transform.position.Set(m_content.transform.position.x, m_content.transform.position.y + offset, m_content.transform.position.z);
             m_content.rect.position.Set(m_content.transform.position.x, m_content.transform.position.y + offset);
         }
+    }
+    public void Onback()
+    {
+        SceneManager.LoadScene(0);
+        SceneManager.UnloadSceneAsync(1);
     }
 }
